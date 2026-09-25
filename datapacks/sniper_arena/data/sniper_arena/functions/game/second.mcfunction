@@ -9,7 +9,7 @@ execute if score #state sa.var matches 2 if score #alive sa.var matches ..0 run 
 execute if score #state sa.var matches 2 if score #time_limit sa.cfg matches 1.. run function sniper_arena:game/timer
 
 # Arena chegarasidan chiqib ketganlar qaytariladi
-execute if score #state sa.var matches 2 as @e[type=minecraft:player,tag=sa.ingame] unless entity @s[x=148,y=-64,z=-89,dx=69,dy=44,dz=95] run function sniper_arena:game/out_of_bounds
+execute if score #state sa.var matches 2 as @e[type=minecraft:player,tag=sa.ingame,tag=!sa.deathcam] unless entity @s[x=148,y=-64,z=-89,dx=69,dy=44,dz=95] run function sniper_arena:game/out_of_bounds
 
 function sniper_arena:game/clear_barrels
 execute if score #state sa.var matches 2 run function sniper_arena:game/bossbar

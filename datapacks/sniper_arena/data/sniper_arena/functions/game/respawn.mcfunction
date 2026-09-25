@@ -1,7 +1,5 @@
-# O'lib qayta tug'ilgan o'yinchi: qurol darajasi saqlanadi
+# O'lgan o'yinchi qayta tug'ildi: avval 3 soniyalik o'lim ekrani (qotil ko'rsatiladi), keyin arenaga
 scoreboard players set @s sa.deaths 0
+scoreboard players set @s sa.jump 0
 scoreboard players add @s sa.tdeaths 1
-function sniper_arena:game/spawn_random
-function sniper_arena:game/kit
-function sniper_arena:game/spawn_effects
-title @s actionbar {"text":"Qayta tug'ildingiz — 3 soniya himoya","color":"aqua"}
+function sniper_arena:game/deathcam_start

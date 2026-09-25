@@ -13,6 +13,10 @@ scoreboard objectives add sa.wins dummy {"text":"★ G'ALABALAR ★","color":"go
 scoreboard objectives add sa.games dummy
 scoreboard objectives add sa.tkills dummy
 scoreboard objectives add sa.tdeaths dummy
+scoreboard objectives add sa.jump dummy
+scoreboard objectives add sa.dead dummy
+scoreboard objectives add sa.killer dummy
+scoreboard objectives add sa.pid dummy
 
 function sniper_arena:config
 
@@ -38,6 +42,7 @@ bossbar set sniper_arena:game color red
 
 # --- Dunyo qoidalari ---
 gamerule keepInventory true
+gamerule fallDamage false
 gamerule doImmediateRespawn true
 gamerule spawnRadius 0
 gamerule doMobSpawning false
@@ -63,6 +68,7 @@ forceload add 146 -90 218 8
 # --- Holat ---
 scoreboard players set #tick sa.var 0
 execute unless entity @a[tag=sa.ingame] run scoreboard players set #state sa.var 0
+execute unless entity @a[tag=sa.ingame] run kill @e[type=minecraft:marker,tag=sa.cam]
 
 # Karambit (LR Tactical) o'rnatilganmi? Mod bo'lmasa knife_probe yuklanmaydi va 0 qoladi
 scoreboard players set #knife_ok sa.var 0

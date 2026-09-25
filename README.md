@@ -22,6 +22,14 @@ plagin kerak emas (qurollar TaCZ, pichoq LR Tactical modidan olinadi).
    6 soniyadan keyin hamma **lobbyga qaytadi** va yangi o'yin uchun yana doiraga turish mumkin.
 7. **O'q cheksiz**: zaxira o'q 9999 (TaCZ `DummyAmmo`), magazin tugasa `R` bilan qayta joylanadi.
 
+Qo'shimcha:
+
+- **Jump pad:** arenadagi har qanday **slime blok** ustiga chiqqan o'yinchi ~7–8 blok balandga otiladi
+  (koordinata kerak emas — slime blokni xohlagan joyga qo'ying).
+- **Yiqilishdan zarar yo'q** (`gamerule fallDamage false`).
+- **O'lim ekrani:** o'lgan o'yinchi 3 soniya kuzatuvchi rejimida bo'ladi, kamera qotilga qaraydi,
+  ekranda "O'LDIRILDINGIZ — Sizni X o'ldirdi" yoziladi, keyin arenaning boshqa joyida tug'iladi.
+
 Qo'shimcha himoyalar:
 
 - Arenada qurol/pichoqni tashlab bo'lmaydi — darhol qaytariladi (qurol bo'sh magazin bilan,

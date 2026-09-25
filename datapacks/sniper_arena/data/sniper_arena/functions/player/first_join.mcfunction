@@ -1,5 +1,6 @@
 # Dunyoga birinchi marta kirgan o'yinchi
 tag @s add sa.init
+execute unless score @s sa.pid matches 1.. run function sniper_arena:player/assign_pid
 scoreboard players add @s sa.wins 0
 scoreboard players add @s sa.games 0
 scoreboard players add @s sa.tkills 0
