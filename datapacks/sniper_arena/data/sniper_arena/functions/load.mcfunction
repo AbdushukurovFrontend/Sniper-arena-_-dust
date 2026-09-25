@@ -43,6 +43,8 @@ bossbar set sniper_arena:game color red
 # --- Dunyo qoidalari ---
 gamerule keepInventory true
 gamerule fallDamage false
+# Jon o'z-o'zidan tez to'lmaydi: o'yinda har #regen_every soniyada +4 jon (game/regen)
+gamerule naturalRegeneration false
 gamerule doImmediateRespawn true
 gamerule spawnRadius 0
 gamerule doMobSpawning false

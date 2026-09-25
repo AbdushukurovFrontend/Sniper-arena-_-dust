@@ -7,9 +7,11 @@ team join sa.lobby @s
 gamemode adventure @s
 clear @s
 effect clear @s
+attribute @s minecraft:generic.max_health base set 100
+attribute @s minecraft:generic.attack_damage modifier remove 5a0c1e2d-0000-4000-8000-00000000a001
 effect give @s minecraft:saturation infinite 0 true
 effect give @s minecraft:resistance infinite 4 true
-effect give @s minecraft:instant_health 1 4 true
+effect give @s minecraft:instant_health 1 5 true
 scoreboard players reset @s sa.kills
 scoreboard players set @s sa.kill_raw 0
 scoreboard players set @s sa.jump 0

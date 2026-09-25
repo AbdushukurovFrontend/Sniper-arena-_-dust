@@ -17,6 +17,9 @@ scoreboard players set #countdown sa.cfg 10
 # 0 = vaqt limiti yo'q
 scoreboard players set #time_limit sa.cfg 900
 
+# O'yinda jon sekin tiklanadi: har necha soniyada +4 jon (100 jondan)
+scoreboard players set #regen_every sa.cfg 5
+
 # G'olib e'lon qilingandan keyin lobbyga qaytishgacha kutish (tick, 20 tick = 1 soniya)
 scoreboard players set #end_delay sa.cfg 120
 

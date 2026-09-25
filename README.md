@@ -84,21 +84,20 @@ Har bir qurol alohida faylda: `datapacks/sniper_arena/data/sniper_arena/function
 Karambit: `guns/knife.mcfunction`. Qurol nomini bilish: qurolni qo'lga olib `/data get entity @s SelectedItem`.
 Tekshirish: `/function sniper_arena:admin/give_guns` (18 ta qurol inventarga tushadi).
 
-**Zarar (damage), 20 jonli o'yinchiga nisbatan:**
+**Jon va zarar (o'yinchida 100 jon):**
 
 | Qurol | Tanaga | Boshga |
 | --- | --- | --- |
-| M4A1-S, AK, M4A4, AUG, SCAR-L | 5 o'q | 2 o'q |
+| M4A1-S, AK, M4A4, AUG, SCAR-L, Glock | 4 o'q | 2 o'q |
 | SKS | 3 o'q | 2 o'q |
-| Glock | 6 o'q | 3 o'q |
 | Drobovik (m1014, db_long) | yaqindan 2 o'q, uzoqdan ko'proq | bittada o'ldirmaydi |
 | AWP, kar98 (snayper) | 2 o'q | **1 o'q** |
-| Sovuq qurollar | 2–3 zarba | — |
+| Sovuq qurollar (zarar x5.5) | 2–3 zarba | — |
 
-Qanday qilingan: `serverconfig/tacz-server.toml` da `DamageBaseMultiplier = 0.125` va `HeadShotBaseMultiplier = 0.65`
-(mcs2 qurollari CS2 raqamlari bilan keladi: AK 36, AWP 115, boshga ×4). TaCZ qurollari uchun
-`datapacks/sniper_arena/data/tacz/data/guns/` dagi fayllar shu ko'paytmaga moslab hisoblangan.
-Umuman tezroq/sekinroq o'lish kerak bo'lsa — faqat `DamageBaseMultiplier` ni o'zgartiring (masalan 0.15 = tezroq).
+- Jon o'z-o'zidan tez to'lmaydi: o'yinda **har 5 soniyada +4 jon** (`config.mcfunction` → `#regen_every`).
+- Umumiy zarar: `serverconfig/tacz-server.toml` → `DamageBaseMultiplier = 0.86`, `HeadShotBaseMultiplier = 0.65`
+  (mcs2 qurollari CS2 raqamlari bilan keladi). Tezroq o'lish kerak bo'lsa `DamageBaseMultiplier` ni oshiring.
+- TaCZ qurollari uchun `datapacks/sniper_arena/data/tacz/data/guns/` dagi fayllar shu ko'paytmaga moslab hisoblangan.
 
 ## Sozlamalar
 
