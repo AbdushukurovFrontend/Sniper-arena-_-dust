@@ -58,6 +58,9 @@ public final class ArenaManager {
     private final Map<String, Set<Long>> pendingChunks = new HashMap<>();
     private final Set<Long> activeChunks = new HashSet<>();
     private final List<UUID> spawnedMarkers = new ArrayList<>();
+    private int migrateWaitTicks;
+    /** Shuncha tick kutamiz (create_markers odatda ~20 tickda ishlaydi): topilmasa, migratsiya tugadi deb hisoblanadi. */
+    private static final int MIGRATE_GIVE_UP_TICKS = 200;
 
     public ArenaManager() {
     }
@@ -123,7 +126,13 @@ public final class ArenaManager {
                 spawns.add(new Arena.Spawn(e.getX(), e.getY(), e.getZ(), e.getYRot(), e.getXRot()));
             }
         }
-        if (!spawns.isEmpty()) {
+        if (spawns.isEmpty()) {
+            // datapack.setup/create_markers hali ishlamagan bo'lishi mumkin (server ochilgandan ~1 soniya
+            // keyin ishlaydi) — bir necha marta qaytadan urinib ko'ramiz, chala migratsiya qilib qo'ymaslik uchun
+            if (++migrateWaitTicks < MIGRATE_GIVE_UP_TICKS) {
+                return;
+            }
+        } else {
             Arena legacy = new Arena("arena1", "Asosiy arena");
             legacy.icon = "minecraft:iron_sword";
             legacy.spawns.addAll(spawns);

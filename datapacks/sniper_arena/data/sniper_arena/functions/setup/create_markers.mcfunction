@@ -11,8 +11,10 @@ summon minecraft:marker 115.5 -58 -49.5 {Tags:["sa.marker","sa.pad"]}
 summon minecraft:text_display 115.5 -54.8 -49.5 {Tags:["sa.holo"],billboard:"center",alignment:"center",line_width:260,shadow:1b,transformation:{left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f],translation:[0.0f,0.0f,0.0f],scale:[1.4f,1.4f,1.4f]},text:'""'}
 function sniper_arena:lobby/holo_text
 
-# Arena ichidagi paydo bo'lish nuqtalari (mod bo'lsa arenalar /sa arena bilan, bular faqat birinchi o'rnatishda)
-execute unless score #mod sa.var matches 1 run function sniper_arena:setup/default_spawns
+# Arena ichidagi paydo bo'lish nuqtalari. Mod bo'lsa bularni "arena1" sifatida o'ziga ko'chirib oladi
+# (bir martalik migratsiya, #arenas_migrated) — shuning uchun migratsiyadan oldin har doim yaratiladi.
+# Migratsiyadan keyin (arenalar endi /sa arena bilan boshqarilganda) qayta yaratilmaydi.
+execute unless score #arenas_migrated sa.var matches 1 run function sniper_arena:setup/default_spawns
 
 execute at @e[type=minecraft:marker,tag=sa.lobby,limit=1] run setworldspawn ~ ~ ~ ~
 scoreboard players set #markers sa.var 1

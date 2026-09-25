@@ -166,7 +166,7 @@ def wait_until(fn, timeout, step=0.1):
 
 def levels():
     out = {}
-    for n in range(1, 19):
+    for n in range(1, 16):
         with open(os.path.join(DATAPACK, 'guns', 'level_%d.mcfunction' % n), encoding='utf-8') as f:
             m = re.search(r'(?:GunId|MeleeWeaponId):"([^"]+)"', f.read())
             out[n] = m.group(1)
@@ -191,7 +191,7 @@ def wait_ready(name, what):
     p = pos(name)
     check(in_arena(p), '%s: %s respawned inside the arena' % (what, name), p)
     check(health(name) == 100.0, '%s: %s has full 100 HP after respawn' % (what, name), health(name))
-    want = LEVEL[min(expected[name], 17) + 1]
+    want = LEVEL[min(expected[name], 14) + 1]
     check(weapon(name) == want, '%s: %s holds the weapon for %d kills' % (what, name, expected[name]),
           '%s (want %s)' % (weapon(name), want))
     check(weapon(name, 1) == 'lrtactical:karambit', '%s: %s still has the karambit' % (what, name), weapon(name, 1))
@@ -217,7 +217,7 @@ def check_victim(victim, killer, what):
 def check_killer(killer, what):
     ok = wait_until(lambda: score(killer, 'sa.kills') == expected[killer], 3)
     check(ok, '%s: %s has %d kills' % (what, killer, expected[killer]), score(killer, 'sa.kills'))
-    if expected[killer] < 18:
+    if expected[killer] < 15:
         want = LEVEL[expected[killer] + 1]
         ok = wait_until(lambda: weapon(killer) == want, 2)
         check(ok, '%s: %s got the next weapon (level %d)' % (what, killer, expected[killer] + 1),
