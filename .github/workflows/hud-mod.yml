@@ -7,6 +7,9 @@ on:
       - '.github/workflows/hud-mod.yml'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,3 +31,18 @@ jobs:
         with:
           name: sniper_arena_hud
           path: hud_mod/build/libs/*.jar
+      - name: Read mod version
+        id: version
+        run: echo "version=$(sed -n "s/^version = '\(.*\)'/\1/p" hud_mod/build.gradle)" >> "$GITHUB_OUTPUT"
+      # Brauzerlar zip ichidagi .jar ni bloklaydi va artifact uchun GitHub'ga kirish kerak —
+      # shuning uchun jar Release'ga to'g'ridan-to'g'ri fayl sifatida qo'yiladi.
+      - name: Publish the jar as a GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: hud-mod-v${{ steps.version.outputs.version }}
+          name: Sniper Arena HUD ${{ steps.version.outputs.version }}
+          target_commitish: ${{ github.sha }}
+          files: hud_mod/build/libs/*.jar
+          body: |
+            Sniper Arena HUD mod (Forge 1.20.1). Jar faylni hamma o'yinchilarning `mods` papkasiga qo'ying,
+            liderning (host) ham — virtual o'lim va AWP qoidasi hostdagi serverda ishlaydi. Eski versiyani o'chiring.
