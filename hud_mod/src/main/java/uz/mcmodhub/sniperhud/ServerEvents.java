@@ -6,6 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.scores.Team;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -51,6 +52,14 @@ public final class ServerEvents {
         }
     }
 
+    /** Arenadagi qurol qoidalari (AWP: oyoqdan boshqa joyga tegsa bitta o'qda). */
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void onHurt(LivingHurtEvent event) {
+        if (event.getEntity() instanceof ServerPlayer victim) {
+            ArenaDamage.onHurt(victim, event);
+        }
+    }
+
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayer player) {
@@ -75,5 +84,6 @@ public final class ServerEvents {
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent event) {
         VirtualDeath.clear();
+        ArenaDamage.clear();
     }
 }

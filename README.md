@@ -60,12 +60,16 @@ Qo'shimcha himoyalar:
   "Timed out" bilan chiqib ketadi. Endi o'lim faqat hisobga yoziladi (kill, advancement, statistika aynan vanilladagidek),
   o'yinchi darhol kuzatuvchi rejimiga o'tadi va killcam boshlanadi. O'chirish: `#virtual_death` (config.mcfunction).
 
+- **qon effekti**: o'q tekkanda ekranning turli joylariga qon sachraydi (zarar qancha katta — shuncha ko'p),
+  jon kamaygan sari ekran chetlaridan qon bosib keladi, 30% dan kam jonda ekranda qon qoladi va yurak urishidek
+  pulslanadi. Jon to'lgan sari qon kamayib, yo'qolib boradi. Teksturalar dasturiy yasalgan: `hud_mod/tools/gen_blood.py`.
+
 Killcam: kamera o'lgan joyda yaratiladi, o'q kelgan chiziq bo'ylab qotilgacha ~4 blok qolguncha yaqinlashadi
 (bu chiziqda devor yo'q, shuning uchun qotil doim ko'rinadi) va `/spectate` bilan qulflanadi — sichqoncha, shift
 yoki sichqoncha tugmasi bilan ko'rinish buzilmaydi.
 
 Jar faylini GitHub avtomatik yig'adi: repo → **Actions** → "Build Sniper Arena HUD mod" → oxirgi ishga tushirish →
-**Artifacts** → `sniper_arena_hud`. Ichidagi `sniper_arena_hud-1.20.1-1.1.0.jar` ni **barcha o'yinchilarning, albatta
+**Artifacts** → `sniper_arena_hud`. Ichidagi `sniper_arena_hud-1.20.1-1.2.0.jar` ni **barcha o'yinchilarning, albatta
 liderning (host) ham** `mods` papkasiga (launcher modpack'iga) qo'ying — virtual o'lim hostdagi serverda ishlaydi.
 
 ## Kerakli modlar (launcher modpack'ida bo'lishi shart)
@@ -100,15 +104,20 @@ Tekshirish: `/function sniper_arena:admin/give_guns` (18 ta qurol inventarga tus
 
 | Qurol | Tanaga | Boshga |
 | --- | --- | --- |
-| M4A1-S, AK, M4A4, AUG, SCAR-L, Glock | 4 o'q | 2 o'q |
+| M4A1-S, AK, M4A4, AUG, SCAR-L, Glock | 3–4 o'q | 2 o'q |
 | SKS | 3 o'q | 2 o'q |
 | Drobovik (m1014, db_long) | yaqindan 2 o'q, uzoqdan ko'proq | bittada o'ldirmaydi |
-| AWP, kar98 (snayper) | 2 o'q | **1 o'q** |
-| Sovuq qurollar (zarar x5.5) | 2–3 zarba | — |
+| **AWP** | **1 o'q** (oyoqdan boshqa har qanday joyga) | **1 o'q** |
+| kar98 | 2 o'q | **1 o'q** |
+| Pichoq va sovuq qurollar (zarar x4.4) | 3–4 zarba | — |
 
+- **AWP (CS2 kabi):** o'q oyoqdan yuqoriga — tana, qo'l, bosh — tegsa bitta o'qda o'ldiradi; oyoqqa tegsa zarar
+  x0.75 va to'liq jondan bitta o'q bilan o'lmaydi. Buni HUD mod serverda (hostda) hisoblaydi: o'q chizig'i nishonning
+  qaysi balandligidan o'tganiga qaraydi (pastki 37.5% — oyoq).
 - Jon o'z-o'zidan tez to'lmaydi: o'yinda **har 5 soniyada +4 jon** (`config.mcfunction` → `#regen_every`).
-- Umumiy zarar: `serverconfig/tacz-server.toml` → `DamageBaseMultiplier = 0.86`, `HeadShotBaseMultiplier = 0.65`
+- Umumiy o'q zarari: `serverconfig/tacz-server.toml` → `DamageBaseMultiplier = 0.903`, `HeadShotBaseMultiplier = 0.65`
   (mcs2 qurollari CS2 raqamlari bilan keladi). Tezroq o'lish kerak bo'lsa `DamageBaseMultiplier` ni oshiring.
+- Sovuq qurollar zarari: `game/spawn_effects.mcfunction` → `sa_melee 3.4 multiply` (x4.4).
 - TaCZ qurollari uchun `datapacks/sniper_arena/data/tacz/data/guns/` dagi fayllar shu ko'paytmaga moslab hisoblangan.
 
 ## Sozlamalar

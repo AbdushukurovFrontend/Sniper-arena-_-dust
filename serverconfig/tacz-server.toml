@@ -12,7 +12,7 @@
 [base_multiplier]
 	#All base damage number is multiplied by this factor
 	#Range: 0.0 ~ 1.7976931348623157E308
-	DamageBaseMultiplier = 0.86
+	DamageBaseMultiplier = 0.903
 	#All armor ignore damage number is multiplied by this factor
 	#Range: 0.0 ~ 1.7976931348623157E308
 	ArmorIgnoreBaseMultiplier = 1.0

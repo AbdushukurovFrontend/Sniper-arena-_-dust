@@ -56,6 +56,7 @@ public final class ClientHud {
         modBus.addListener(ClientHud::registerOverlays);
         modBus.addListener(ClientHud::clientSetup);
         MinecraftForge.EVENT_BUS.addListener(ClientHud::onRenderOverlay);
+        MinecraftForge.EVENT_BUS.addListener(BloodOverlay::onClientTick);
     }
 
     /**
@@ -77,6 +78,7 @@ public final class ClientHud {
     }
 
     private static void registerOverlays(RegisterGuiOverlaysEvent event) {
+        event.registerBelowAll("arena_blood", BloodOverlay::render);
         event.registerAboveAll("arena_hud", ClientHud::render);
     }
 
@@ -89,7 +91,7 @@ public final class ClientHud {
         return team == null ? null : team.getName();
     }
 
-    private static boolean inArena() {
+    static boolean inArena() {
         String team = teamName();
         return team != null && team.startsWith("sa.");
     }
