@@ -8,4 +8,4 @@ scoreboard players add @s sa.tdeaths 0
 scoreboard players set @s sa.leave 0
 scoreboard players set @s sa.deaths 0
 function sniper_arena:lobby/send
-tellraw @s [{"text":"[Sniper Arena] ","color":"gold","bold":true},{"text":"Xush kelibsiz! O'yinni boshlash uchun o'rtadagi doiraga turing. ","color":"yellow","bold":false},{"text":"Birinchi bo'lib 5 ta kill qilgan g'olib bo'ladi.","color":"white","bold":false}]
+tellraw @s [{"text":"[Sniper Arena] ","color":"gold","bold":true},{"text":"Xush kelibsiz! O'yinni boshlash uchun o'rtadagi doiraga turing. ","color":"yellow","bold":false},{"text":"Birinchi bo'lib ","color":"white","bold":false},{"score":{"name":"#kills_to_win","objective":"sa.cfg"},"color":"gold","bold":true},{"text":" ta kill qilgan g'olib bo'ladi.","color":"white","bold":false}]

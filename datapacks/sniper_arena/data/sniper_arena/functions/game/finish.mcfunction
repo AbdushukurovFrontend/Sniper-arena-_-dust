@@ -1,7 +1,7 @@
 # O'yin tugadi — hamma spawn (lobby)ga qaytadi
 execute as @a[tag=sa.ingame] run function sniper_arena:lobby/send
 tag @a remove sa.winner
-kill @e[type=minecraft:marker,tag=sa.cam]
+kill @e[type=minecraft:armor_stand,tag=sa.cam]
 scoreboard players reset * sa.kills
 scoreboard players set #state sa.var 0
 scoreboard players set #solo sa.var 0

@@ -4,10 +4,10 @@ license="All rights reserved"
 
 [[mods]]
 modId="sniper_arena_hud"
-version="1.0.0"
+version="1.1.0"
 displayName="Sniper Arena HUD"
 authors="MCModHub"
-description='''CS2 uslubidagi ekran: o'ng pastda qurollar, tepada o'yinchilar paneli va o'ng tepada kill feed. Faqat Sniper Arena xaritasida ishlaydi.'''
+description='''CS2 uslubidagi ekran (qurollar, o'yinchilar paneli, kill feed) va arenada respawnsiz "virtual o'lim" (internet orqali kirganlar lag qilmasligi uchun). Faqat Sniper Arena xaritasida ishlaydi.'''
 displayTest="IGNORE_ALL_VERSION"
 
 [[dependencies.sniper_arena_hud]]

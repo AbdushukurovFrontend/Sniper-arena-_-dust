@@ -17,6 +17,8 @@ scoreboard players set @s sa.kill_raw 0
 scoreboard players set @s sa.jump 0
 scoreboard players set @s sa.dead 0
 scoreboard players set @s sa.killer 0
+scoreboard players operation #me sa.var = @s sa.pid
+execute as @e[type=minecraft:armor_stand,tag=sa.cam] if score @s sa.pid = #me sa.var run kill @s
 execute if entity @e[type=minecraft:marker,tag=sa.lobby] run tp @s @e[type=minecraft:marker,tag=sa.lobby,limit=1]
 execute unless entity @e[type=minecraft:marker,tag=sa.lobby] run tp @s 115.5 -58 -60.5 0 0
 execute at @s run spawnpoint @s ~ ~ ~ ~

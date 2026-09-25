@@ -23,5 +23,10 @@ scoreboard players set #regen_every sa.cfg 5
 # G'olib e'lon qilingandan keyin lobbyga qaytishgacha kutish (tick, 20 tick = 1 soniya)
 scoreboard players set #end_delay sa.cfg 120
 
+# Arenadagi o'lim respawnsiz ("virtual o'lim", Sniper Arena HUD modi kerak — hostda ham).
+# 1.20.1 da har respawnda server o'yinchiga atrofdagi hamma chunklarni qayta yuboradi: internet orqali
+# kirgan o'yinchida ping ko'tariladi va u chiqib ketishi mumkin. 1 = yoqilgan (tavsiya), 0 = oddiy o'lim
+scoreboard players set #virtual_death sa.cfg 1
+
 # Ichki doimiy qiymat (o'zgartirmang)
 scoreboard players set #60 sa.var 60

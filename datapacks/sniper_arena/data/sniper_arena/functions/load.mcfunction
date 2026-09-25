@@ -70,7 +70,9 @@ forceload add 146 -90 218 8
 # --- Holat ---
 scoreboard players set #tick sa.var 0
 execute unless entity @a[tag=sa.ingame] run scoreboard players set #state sa.var 0
-execute unless entity @a[tag=sa.ingame] run kill @e[type=minecraft:marker,tag=sa.cam]
+execute unless entity @a[tag=sa.ingame] run kill @e[type=minecraft:armor_stand,tag=sa.cam]
+# Eski versiyadagi kamera markerlari
+kill @e[type=minecraft:marker,tag=sa.cam]
 
 # Karambit (LR Tactical) o'rnatilganmi? Mod bo'lmasa knife_probe yuklanmaydi va 0 qoladi
 scoreboard players set #knife_ok sa.var 0

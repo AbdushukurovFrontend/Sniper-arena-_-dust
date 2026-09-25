@@ -54,10 +54,19 @@ Qo'shimcha himoyalar:
 
 - boshqa o'yinchilar qurolidagi **skin ko'rinadi**: mod TaCZ'ning `GunLodRenderDistance` sozlamasini 128 ga qo'yadi
   (standart 0 da boshqalar qurolini oddiy, skinsiz model bilan ko'rardingiz).
+- **virtual o'lim** (1.1.0 dan): arenada o'lgan o'yinchi haqiqatda o'lmaydi va respawn bo'lmaydi. Minecraft 1.20.1 da
+  har respawnda server o'yinchiga atrofdagi hamma chunklarni qaytadan yuboradi — lider (host) buni sezmaydi, lekin
+  internet orqali kirgan o'yinchiga har o'limda katta paket ketadi: ping ko'tariladi, killcam kechikadi va u
+  "Timed out" bilan chiqib ketadi. Endi o'lim faqat hisobga yoziladi (kill, advancement, statistika aynan vanilladagidek),
+  o'yinchi darhol kuzatuvchi rejimiga o'tadi va killcam boshlanadi. O'chirish: `#virtual_death` (config.mcfunction).
+
+Killcam: kamera o'lgan joyda yaratiladi, o'q kelgan chiziq bo'ylab qotilgacha ~4 blok qolguncha yaqinlashadi
+(bu chiziqda devor yo'q, shuning uchun qotil doim ko'rinadi) va `/spectate` bilan qulflanadi — sichqoncha, shift
+yoki sichqoncha tugmasi bilan ko'rinish buzilmaydi.
 
 Jar faylini GitHub avtomatik yig'adi: repo → **Actions** → "Build Sniper Arena HUD mod" → oxirgi ishga tushirish →
-**Artifacts** → `sniper_arena_hud`. Ichidagi `sniper_arena_hud-1.20.1-1.0.0.jar` ni barcha o'yinchilarning
-`mods` papkasiga (launcher modpack'iga) qo'ying.
+**Artifacts** → `sniper_arena_hud`. Ichidagi `sniper_arena_hud-1.20.1-1.1.0.jar` ni **barcha o'yinchilarning, albatta
+liderning (host) ham** `mods` papkasiga (launcher modpack'iga) qo'ying — virtual o'lim hostdagi serverda ishlaydi.
 
 ## Kerakli modlar (launcher modpack'ida bo'lishi shart)
 

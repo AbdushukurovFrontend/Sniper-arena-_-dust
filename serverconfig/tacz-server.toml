@@ -37,7 +37,7 @@
 	#Enable the recipe limit of default gunsmith table or not
 	EnableDefaultGunSmithTableFilter = true
 	#[Debug Option] Do server-side network check while shooting or not
-	ServerShootNetworkCheck = true
+	ServerShootNetworkCheck = false
 	#[Debug Option] Do server-side shoot cooldown check or not. WARNING: Close this will disable the shoot cooldown check in server-side at all, which may lead to potential for cheating. Only consider to close this when you can't shoot at all sometimes.
 	ServerShootCooldownCheck = true
 
