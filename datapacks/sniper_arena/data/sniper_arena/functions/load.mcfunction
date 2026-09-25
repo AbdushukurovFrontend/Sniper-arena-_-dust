@@ -74,6 +74,9 @@ execute unless entity @a[tag=sa.ingame] run kill @e[type=minecraft:marker,tag=sa
 scoreboard players set #knife_ok sa.var 0
 function sniper_arena:guns/knife_probe
 
+# Doira ustidagi yozuvni yangilash
+execute as @e[type=minecraft:text_display,tag=sa.holo] run data merge entity @s {text:'[{"text":"SNIPER ARENA\\n","color":"gold","bold":true},{"text":"O\'yinni boshlash uchun\\ndoira ichiga turing\\n","color":"white","bold":false},{"text":"(kamida 2 o\'yinchi, 18 kill = g\'alaba)","color":"gray","bold":false}]'}
+
 # Lobby / doira / spawn markerlari (birinchi marta avtomatik yaratiladi)
 execute at @e[type=minecraft:marker,tag=sa.lobby,limit=1] run setworldspawn ~ ~ ~ ~
 execute unless score #markers sa.var matches 1 run schedule function sniper_arena:setup/check 20t

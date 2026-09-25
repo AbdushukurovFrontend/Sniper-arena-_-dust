@@ -1,4 +1,2 @@
-# ============================================================
-#  2-QUROL — 1 ta kill qilgandan keyin beriladi
-# ============================================================
-item replace entity @s hotbar.0 with tacz:modern_kinetic_gun{GunId:"tacz:kar98",GunFireMode:"SEMI",GunCurrentAmmoCount:4,HasBulletInBarrel:1b,DummyAmmo:9999,MaxDummyAmmo:9999,AttachmentLock:1b,AttachmentSCOPE:{id:"tacz:attachment",Count:1b,tag:{AttachmentId:"tacz:scope_98k"}}}
+# 2-QUROL — 1 ta killdan keyin beriladi
+item replace entity @s hotbar.0 with tacz:modern_kinetic_gun{GunId:"mcs2:cs_m4a1s_printstream",GunFireMode:"AUTO",GunCurrentAmmoCount:20,HasBulletInBarrel:1b,DummyAmmo:9999,MaxDummyAmmo:9999,AttachmentLock:1b,sa_w:1b}

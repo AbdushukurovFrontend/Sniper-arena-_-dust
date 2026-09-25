@@ -8,7 +8,7 @@ summon minecraft:marker 115.5 -58 -60.5 {Tags:["sa.marker","sa.lobby"],Rotation:
 # O'yinni boshlash doirasi (markazi)
 summon minecraft:marker 115.5 -58 -49.5 {Tags:["sa.marker","sa.pad"]}
 # Doira ustidagi yozuv
-summon minecraft:text_display 115.5 -54.8 -49.5 {Tags:["sa.holo"],billboard:"center",alignment:"center",line_width:260,shadow:1b,transformation:{left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f],translation:[0.0f,0.0f,0.0f],scale:[1.4f,1.4f,1.4f]},text:'[{"text":"SNIPER ARENA\\n","color":"gold","bold":true},{"text":"O\'yinni boshlash uchun\\ndoira ichiga turing\\n","color":"white","bold":false},{"text":"(kamida 2 o\'yinchi, 5 kill = g\'alaba)","color":"gray","bold":false}]'}
+summon minecraft:text_display 115.5 -54.8 -49.5 {Tags:["sa.holo"],billboard:"center",alignment:"center",line_width:260,shadow:1b,transformation:{left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f],translation:[0.0f,0.0f,0.0f],scale:[1.4f,1.4f,1.4f]},text:'[{"text":"SNIPER ARENA\\n","color":"gold","bold":true},{"text":"O\'yinni boshlash uchun\\ndoira ichiga turing\\n","color":"white","bold":false},{"text":"(kamida 2 o\'yinchi, 18 kill = g\'alaba)","color":"gray","bold":false}]'}
 
 # Arena ichidagi paydo bo'lish nuqtalari
 function sniper_arena:setup/default_spawns
