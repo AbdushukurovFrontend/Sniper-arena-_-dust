@@ -1,8 +1,4 @@
 # Arena ichida, yerda turib, o'yinchi qarashi kerak bo'lgan tomonga qarab ishlating
-execute at @s run summon minecraft:marker ~ ~ ~ {Tags:["sa.marker","sa.spawn","sa.new"]}
-tp @e[type=minecraft:marker,tag=sa.new] @s
-tag @e[type=minecraft:marker,tag=sa.new] remove sa.new
-execute at @s run forceload add ~ ~
-execute at @s run particle minecraft:happy_villager ~ ~1 ~ 0.3 0.6 0.3 0 25
-execute store result score #tmp sa.var if entity @e[type=minecraft:marker,tag=sa.spawn]
-tellraw @s [{"text":"[Sniper Arena] ","color":"gold","bold":true},{"text":"Spawn nuqtasi qo'shildi. Jami: ","color":"green","bold":false},{"score":{"name":"#tmp","objective":"sa.var"},"color":"yellow","bold":false}]
+# Mod bo'lsa arenalar /sa arena buyruqlari bilan sozlanadi
+execute if score #mod sa.var matches 1 run tellraw @s [{"text":"[Sniper Arena] ","color":"gold","bold":true},{"text":"Arenalar endi mod orqali sozlanadi: ","color":"yellow","bold":false},{"text":"/sa arena","color":"aqua","bold":false,"clickEvent":{"action":"suggest_command","value":"/sa arena "}},{"text":" (ro'yxat: /sa arena list)","color":"gray","bold":false}]
+execute unless score #mod sa.var matches 1 run function sniper_arena:admin/add_spawn_legacy

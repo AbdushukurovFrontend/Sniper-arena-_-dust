@@ -1,6 +1,4 @@
 # Spawn nuqtalarini ko'rsatish/yashirish
-execute store success score #tmp sa.var if score #show_spawns sa.var matches 1
-execute if score #tmp sa.var matches 1 run scoreboard players set #show_spawns sa.var 0
-execute if score #tmp sa.var matches 0 run scoreboard players set #show_spawns sa.var 1
-execute if score #show_spawns sa.var matches 1 run tellraw @s {"text":"Spawnlar ko'rsatilmoqda: oq ustun = spawn, olov = qaragan tomoni, yashil = lobby, sariq = doira.","color":"green"}
-execute if score #show_spawns sa.var matches 0 run tellraw @s {"text":"Spawnlar yashirildi.","color":"gray"}
+# Mod bo'lsa arenalar /sa arena buyruqlari bilan sozlanadi
+execute if score #mod sa.var matches 1 run tellraw @s [{"text":"[Sniper Arena] ","color":"gold","bold":true},{"text":"Arenalar endi mod orqali sozlanadi: ","color":"yellow","bold":false},{"text":"/sa arena","color":"aqua","bold":false,"clickEvent":{"action":"suggest_command","value":"/sa arena "}},{"text":" (ro'yxat: /sa arena list)","color":"gray","bold":false}]
+execute unless score #mod sa.var matches 1 run function sniper_arena:admin/show_spawns_legacy

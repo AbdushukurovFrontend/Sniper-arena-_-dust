@@ -1,4 +1,4 @@
-# O'yinchini o'yinga qo'shish (arenaning tasodifiy joyiga)
+# O'yinchini o'yinga qo'shish. Arenaga joylash — arena tanlangach (mod yoki game/choose_fallback)
 scoreboard players operation @s sa.match = #match_id sa.var
 scoreboard players set @s sa.kills 0
 scoreboard players set @s sa.kill_raw 0
@@ -10,8 +10,8 @@ execute unless score @s sa.pid matches 1.. run function sniper_arena:player/assi
 scoreboard players add @s sa.games 1
 team join sa.game @s
 gamemode adventure @s
+clear @s
 effect clear @s
-function sniper_arena:game/spawn_random
-execute at @s run spawnpoint @s ~ ~ ~ ~
-function sniper_arena:game/kit
-function sniper_arena:game/spawn_effects
+# ruletka paytida hech kim zarar ololmaydi
+effect give @s minecraft:resistance 10 4 true
+effect give @s minecraft:saturation infinite 0 true

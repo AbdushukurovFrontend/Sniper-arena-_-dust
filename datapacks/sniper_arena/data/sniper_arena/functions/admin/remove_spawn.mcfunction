@@ -1,5 +1,4 @@
-execute at @s store result score #tmp sa.var if entity @e[type=minecraft:marker,tag=sa.spawn,distance=..3]
-execute if score #tmp sa.var matches 0 run tellraw @s {"text":"3 blok ichida spawn nuqtasi yo'q.","color":"red"}
-execute if score #tmp sa.var matches 1.. at @s run kill @e[type=minecraft:marker,tag=sa.spawn,distance=..3,sort=nearest,limit=1]
-execute store result score #tmp sa.var if entity @e[type=minecraft:marker,tag=sa.spawn]
-tellraw @s [{"text":"[Sniper Arena] ","color":"gold","bold":true},{"text":"Qolgan spawn nuqtalari: ","color":"yellow","bold":false},{"score":{"name":"#tmp","objective":"sa.var"},"color":"yellow","bold":false}]
+
+# Mod bo'lsa arenalar /sa arena buyruqlari bilan sozlanadi
+execute if score #mod sa.var matches 1 run tellraw @s [{"text":"[Sniper Arena] ","color":"gold","bold":true},{"text":"Arenalar endi mod orqali sozlanadi: ","color":"yellow","bold":false},{"text":"/sa arena","color":"aqua","bold":false,"clickEvent":{"action":"suggest_command","value":"/sa arena "}},{"text":" (ro'yxat: /sa arena list)","color":"gray","bold":false}]
+execute unless score #mod sa.var matches 1 run function sniper_arena:admin/remove_spawn_legacy

@@ -4,14 +4,17 @@
 # ============================================================
 
 # G'alaba uchun kerakli kill soni.
-# Har bir kill uchun alohida qurol bor: guns/level_1 ... guns/level_18
-scoreboard players set #kills_to_win sa.cfg 18
+# Har bir kill uchun alohida qurol bor: guns/level_1 ... guns/level_15
+scoreboard players set #kills_to_win sa.cfg 15
 
 # O'yin boshlanishi uchun doirada turishi kerak bo'lgan eng kam o'yinchi soni
 scoreboard players set #min_players sa.cfg 2
 
 # Doirada yetarli o'yinchi bo'lgach, boshlanishgacha sanoq (soniya)
 scoreboard players set #countdown sa.cfg 10
+
+# Arena tanlash (ruletka oynasi) davomiyligi, tick. Mod oynasi 4.9 s: 1 s kutish + 3 s aylanish + to'xtash
+scoreboard players set #choose_ticks sa.cfg 100
 
 # O'yin vaqt limiti (soniya). Vaqt tugasa eng ko'p kill qilgan g'olib bo'ladi.
 # 0 = vaqt limiti yo'q

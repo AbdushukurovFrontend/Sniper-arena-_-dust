@@ -435,9 +435,9 @@ def full_match():
     last_death['Guest'] = time.time()
     ensure_ready('Guest', 'rejoin')
 
-    # 8..18: until Host1 wins
+    # 8..15: until Host1 wins the round (15 kills)
     i = 0
-    while expected['Host1'] < 17:
+    while expected['Host1'] < 14:
         v = victims[i % 2]
         ensure_ready(v, what)
         single_kill(v, 'Host1', '%s kill %d' % (what, expected['Host1'] + 1))
@@ -447,11 +447,26 @@ def full_match():
     kill(v, 'Host1')
     expected['Host1'] += 1
     ok = wait_until(lambda: score('#state', 'sa.var') == 3, 3)
-    check(ok, 'win: 18th kill ends the match')
+    check(ok, 'win: 15th kill ends the round')
     check('sa.winner' in tags('Host1'), 'win: Host1 is the winner')
-    check(score('Host1', 'sa.kills') == 18, 'win: Host1 has 18 kills', score('Host1', 'sa.kills'))
+    check(score('Host1', 'sa.kills') == 15, 'win: Host1 has 15 kills', score('Host1', 'sa.kills'))
+    check(score('Host1', 'sa.wins') == 1, 'win: win recorded', score('Host1', 'sa.wins'))
+
+    # No return to the lobby/pad: a new roulette spins automatically and the same players keep playing
+    ok = wait_until(lambda: score('#state', 'sa.var') == 2, 40, 0.5)
+    check(ok, 'loop: a new round started automatically (no lobby in between)')
+    for name in bots:
+        check('sa.ingame' in tags(name), 'loop: %s is still in the game (never left)' % name)
+        check(in_arena(pos(name)), 'loop: %s is in the arena again' % name, pos(name))
+        check(score(name, 'sa.kills') == 0, 'loop: %s kills reset for the new round' % name, score(name, 'sa.kills'))
+        check(weapon(name) == LEVEL[1], 'loop: %s has the first weapon again' % name, weapon(name))
+    check(score('Host1', 'sa.wins') == 1, 'loop: win count unchanged mid-round', score('Host1', 'sa.wins'))
+    time.sleep(3.3)
+
+    # Explicit stop: the only way back to the lobby is admin/force_stop
+    rc.cmd('execute as Host1 run function sniper_arena:admin/force_stop')
     ok = wait_until(lambda: score('#state', 'sa.var') == 0, 15, 0.5)
-    check(ok, 'end: everybody returned to the lobby')
+    check(ok, 'end: force_stop returned everybody to the lobby')
     time.sleep(1)
     for name in bots:
         check('sa.ingame' not in tags(name), 'end: %s left the match' % name, tags(name))
@@ -459,8 +474,8 @@ def full_match():
         check(gamemode(name) == 2, 'end: %s is in adventure mode' % name, gamemode(name))
         check(health(name) == 100.0, 'end: %s has 100 HP' % name, health(name))
         check(not in_arena(pos(name)), 'end: %s is out of the arena' % name, pos(name))
-    check(score('Host1', 'sa.wins') == 1, 'end: win recorded', score('Host1', 'sa.wins'))
     check(not test('@e[type=minecraft:armor_stand,tag=sa.cam]'), 'end: no killcam cameras left')
+    check(not test('@e[type=minecraft:marker,tag=sa.spawn]'), 'end: no leftover mod spawn markers')
 
 
 # ---------------------------------------------------------------------------- log scan

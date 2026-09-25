@@ -14,6 +14,6 @@ execute as @e[type=minecraft:player,tag=sa.ingame,tag=!sa.deathcam] at @s if blo
 
 # Qurol/pichoq nazorati, arenadagi tashlangan narsalarni o'chirish
 execute as @e[type=minecraft:player,tag=sa.ingame,tag=!sa.deathcam] run function sniper_arena:game/kit_check
-kill @e[type=minecraft:item,x=148,y=-64,z=-89,dx=69,dy=44,dz=95]
+execute at @a[tag=sa.ingame] run kill @e[type=minecraft:item,distance=..12]
 
 execute if score #state sa.var matches 3 run function sniper_arena:game/end_tick

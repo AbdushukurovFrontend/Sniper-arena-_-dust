@@ -57,8 +57,6 @@ public final class ClientHud {
         modBus.addListener(ClientHud::clientSetup);
         MinecraftForge.EVENT_BUS.addListener(ClientHud::onRenderOverlay);
         MinecraftForge.EVENT_BUS.addListener(BloodOverlay::onClientTick);
-        MinecraftForge.EVENT_BUS.addListener(DamageNumbers::onClientTick);
-        MinecraftForge.EVENT_BUS.addListener(DamageNumbers::onRenderLevel);
     }
 
     /**

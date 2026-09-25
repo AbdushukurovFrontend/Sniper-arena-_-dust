@@ -5,7 +5,8 @@ execute as @a[tag=!sa.init] run function sniper_arena:player/first_join
 execute as @a[scores={sa.leave=1..}] run function sniper_arena:player/rejoin
 
 function sniper_arena:lobby/tick
-execute if score #state sa.var matches 2.. run function sniper_arena:game/tick
+execute if score #state sa.var matches 2..3 run function sniper_arena:game/tick
+execute if score #state sa.var matches 4 run function sniper_arena:game/choose_tick
 
 # Soniyada bir marta
 scoreboard players add #tick sa.var 1

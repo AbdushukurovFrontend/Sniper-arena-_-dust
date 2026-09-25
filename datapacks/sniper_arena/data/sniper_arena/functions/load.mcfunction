@@ -63,13 +63,18 @@ gamerule commandBlockOutput false
 time set noon
 weather clear
 
-# Lobby va arena chunklari doim yuklangan tursin (markerlar ishlashi uchun)
+# Lobby chunklari doim yuklangan tursin (markerlar ishlashi uchun). Arenalarni mod faqat o'yin paytida yuklaydi.
+# Eski arena (1-arena) mod uni arenalar ro'yxatiga ko'chirguncha yuklanadi
 forceload add 96 -70 136 -30
-forceload add 146 -90 218 8
+execute unless score #arenas_migrated sa.var matches 1 run forceload add 146 -90 218 8
+
+# Mod har soniyada 1 qilib turadi (mod yo'q bo'lsa 0 qoladi va datapack eski usulda ishlaydi)
+scoreboard players set #mod sa.var 0
 
 # --- Holat ---
 scoreboard players set #tick sa.var 0
 execute unless entity @a[tag=sa.ingame] run scoreboard players set #state sa.var 0
+execute if score #state sa.var matches 0 run function sniper_arena:lobby/barrier_off
 execute unless entity @a[tag=sa.ingame] run kill @e[type=minecraft:armor_stand,tag=sa.cam]
 # Eski versiyadagi kamera markerlari
 kill @e[type=minecraft:marker,tag=sa.cam]
@@ -79,7 +84,7 @@ scoreboard players set #knife_ok sa.var 0
 function sniper_arena:guns/knife_probe
 
 # Doira ustidagi yozuvni yangilash
-execute as @e[type=minecraft:text_display,tag=sa.holo] run data merge entity @s {text:'[{"text":"SNIPER ARENA\\n","color":"gold","bold":true},{"text":"O\'yinni boshlash uchun\\ndoira ichiga turing\\n","color":"white","bold":false},{"text":"(kamida 2 o\'yinchi, 18 kill = g\'alaba)","color":"gray","bold":false}]'}
+function sniper_arena:lobby/holo_text
 
 # Lobby / doira / spawn markerlari (birinchi marta avtomatik yaratiladi)
 execute at @e[type=minecraft:marker,tag=sa.lobby,limit=1] run setworldspawn ~ ~ ~ ~
