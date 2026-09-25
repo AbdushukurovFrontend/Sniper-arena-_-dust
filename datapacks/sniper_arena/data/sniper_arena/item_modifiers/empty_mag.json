@@ -1,0 +1,4 @@
+{
+  "function": "minecraft:set_nbt",
+  "tag": "{GunCurrentAmmoCount:0,HasBulletInBarrel:0b}"
+}

@@ -21,7 +21,7 @@
 	HeadShotBaseMultiplier = 1.0
 	#The movement speed will decrease per kg of weight. 0.015 means 1.5% speed decrease per kg. Set a negative value to disable this feature
 	#Range: -1.0 ~ 1.7976931348623157E308
-	WeightSpeedMultiplier = 0.015
+	WeightSpeedMultiplier = -1.0
 
 [misc]
 	#The entity's head hitbox during the headshot
