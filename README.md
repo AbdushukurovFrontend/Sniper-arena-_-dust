@@ -64,12 +64,16 @@ Qo'shimcha himoyalar:
   jon kamaygan sari ekran chetlaridan qon bosib keladi, 30% dan kam jonda ekranda qon qoladi va yurak urishidek
   pulslanadi. Jon to'lgan sari qon kamayib, yo'qolib boradi. Teksturalar dasturiy yasalgan: `hud_mod/tools/gen_blood.py`.
 
+- **zarar raqamlari** (Roblox kabi): o'q tekkizganingizda nishonning boshi ustida qancha jon ketgani chiqadi va
+  tepaga ko'tarilib so'nadi. Boshga tekkan o'q — sariq, o'ldirgan zarba — qizil va kattaroq. Avtomatdan ketma-ket
+  tekkan o'qlar bitta raqamga qo'shilib boradi. Raqamni faqat otgan o'yinchi ko'radi.
+
 Killcam: kamera o'lgan joyda yaratiladi, o'q kelgan chiziq bo'ylab qotilgacha ~4 blok qolguncha yaqinlashadi
 (bu chiziqda devor yo'q, shuning uchun qotil doim ko'rinadi) va `/spectate` bilan qulflanadi — sichqoncha, shift
 yoki sichqoncha tugmasi bilan ko'rinish buzilmaydi.
 
 Jar faylini GitHub avtomatik yig'adi: repo → **Actions** → "Build Sniper Arena HUD mod" → oxirgi ishga tushirish →
-**Artifacts** → `sniper_arena_hud`. Ichidagi `sniper_arena_hud-1.20.1-1.2.0.jar` ni **barcha o'yinchilarning, albatta
+**Artifacts** → `sniper_arena_hud`. Ichidagi `sniper_arena_hud-1.20.1-1.3.0.jar` ni **barcha o'yinchilarning, albatta
 liderning (host) ham** `mods` papkasiga (launcher modpack'iga) qo'ying — virtual o'lim hostdagi serverda ishlaydi.
 
 ## Kerakli modlar (launcher modpack'ida bo'lishi shart)

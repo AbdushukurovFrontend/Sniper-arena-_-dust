@@ -5,6 +5,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.scores.Team;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -57,6 +58,14 @@ public final class ServerEvents {
     public static void onHurt(LivingHurtEvent event) {
         if (event.getEntity() instanceof ServerPlayer victim) {
             ArenaDamage.onHurt(victim, event);
+        }
+    }
+
+    /** Otgan o'yinchiga zarar raqami (eng oxirida: boshqa modlar zararni o'zgartirib bo'lgach). */
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onDamage(LivingDamageEvent event) {
+        if (event.getEntity() instanceof ServerPlayer victim) {
+            ArenaDamage.onDamage(victim, event);
         }
     }
 

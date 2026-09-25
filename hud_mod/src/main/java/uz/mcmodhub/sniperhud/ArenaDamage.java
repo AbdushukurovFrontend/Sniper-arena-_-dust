@@ -12,15 +12,19 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.Team;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.network.PacketDistributor;
 
 /**
- * AWP qoidasi (CS2 kabi): o'q oyoqdan yuqoriga (tana, qo'l, bosh) tegsa bitta o'qda o'ldiradi,
- * oyoqqa tegsa zarar x0.75 va to'liq jondan bitta o'q bilan o'ldirmaydi.
+ * Arenadagi zarar: AWP qoidasi (CS2 kabi: o'q oyoqdan yuqoriga — tana, qo'l, bosh — tegsa bitta o'qda o'ldiradi,
+ * oyoqqa tegsa zarar x0.75 va to'liq jondan bitta o'q bilan o'ldirmaydi) va otgan o'yinchiga zarar raqami.
  */
 final class ArenaDamage {
     /** Tana balandligining shu ulushidan pastda — oyoq (o'yinchi modelida oyoq 32 pikseldan 12 tasi). */
     private static final double LEG_LINE = 0.375;
+    /** Shu ulushdan yuqorida — bosh (32 pikseldan tepadagi 8 tasi). */
+    private static final double HEAD_LINE = 0.75;
     private static final float LEG_MULTIPLIER = 0.75F;
     /** Oyoqqa tekkan bitta AWP o'qining eng katta zarari (100 jondan). */
     private static final float LEG_MAX = 85.0F;
@@ -40,15 +44,10 @@ final class ArenaDamage {
         if (!(source.getEntity() instanceof LivingEntity shooter) || shooter == victim || !isAwp(shooter.getMainHandItem())) {
             return;
         }
-        Entity direct = source.getDirectEntity();
-        boolean projectile = direct != null && direct != shooter && !(direct instanceof LivingEntity);
-        boolean taczDamage = source.typeHolder().unwrapKey()
-                .map(key -> "tacz".equals(key.location().getNamespace())).orElse(false);
-        if (!projectile && !taczDamage) {
+        double height = bulletHeight(source, shooter, victim);
+        if (Double.isNaN(height)) {
             return; // o'q emas (masalan qurol bilan urish)
         }
-        double height = projectile ? hitHeight(direct.position(), direct.getDeltaMovement(), victim)
-                : hitHeight(shooter.getEyePosition(), shooter.getLookAngle(), victim);
         if (height >= LEG_LINE) {
             event.setAmount(Math.max(event.getAmount(), LETHAL));
             return;
@@ -65,8 +64,46 @@ final class ArenaDamage {
         event.setAmount(amount);
     }
 
+    /** Nishon qancha jon yo'qotganini otgan o'yinchiga yuboradi (klientda boshi ustida raqam bo'lib chiqadi). */
+    static void onDamage(ServerPlayer victim, LivingDamageEvent event) {
+        Team team = victim.getTeam();
+        if (team == null || !"sa.game".equals(team.getName())) {
+            return;
+        }
+        DamageSource source = event.getSource();
+        if (!(source.getEntity() instanceof ServerPlayer attacker) || attacker == victim) {
+            return;
+        }
+        float health = victim.getHealth();
+        float lost = Math.min(event.getAmount(), health);
+        if (lost <= 0.0F) {
+            return;
+        }
+        byte flags = 0;
+        if (event.getAmount() >= health) {
+            flags |= DamagePacket.KILL;
+        }
+        double height = bulletHeight(source, attacker, victim);
+        if (!Double.isNaN(height) && height >= HEAD_LINE) {
+            flags |= DamagePacket.HEAD;
+        }
+        Net.CHANNEL.send(PacketDistributor.PLAYER.with(() -> attacker), new DamagePacket(victim.getId(), lost, flags));
+    }
+
     static void clear() {
         LEG_HITS.clear();
+    }
+
+    /** O'q nishonning qaysi balandligiga tekkani (0 = oyoq tagi, 1 = bosh tepasi); o'q bo'lmasa NaN. */
+    private static double bulletHeight(DamageSource source, LivingEntity shooter, LivingEntity victim) {
+        Entity direct = source.getDirectEntity();
+        boolean projectile = direct != null && direct != shooter && !(direct instanceof LivingEntity);
+        if (projectile) {
+            return hitHeight(direct.position(), direct.getDeltaMovement(), victim);
+        }
+        boolean taczDamage = source.typeHolder().unwrapKey()
+                .map(key -> "tacz".equals(key.location().getNamespace())).orElse(false);
+        return taczDamage ? hitHeight(shooter.getEyePosition(), shooter.getLookAngle(), victim) : Double.NaN;
     }
 
     private static boolean isAwp(ItemStack stack) {

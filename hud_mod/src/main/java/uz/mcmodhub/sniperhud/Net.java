@@ -24,5 +24,10 @@ public final class Net {
                 .decoder(KillFeedPacket::decode)
                 .consumerMainThread(KillFeedPacket::handle)
                 .add();
+        CHANNEL.messageBuilder(DamagePacket.class, 1, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(DamagePacket::encode)
+                .decoder(DamagePacket::decode)
+                .consumerMainThread(DamagePacket::handle)
+                .add();
     }
 }
