@@ -93,6 +93,7 @@ Hammasini ko'rish: `/function sniper_arena:admin/help`
 | `admin/status` | holat, spawnlar soni, karambit modi bor-yo'qligi |
 | `admin/force_start` | doiradagilar bilan darhol boshlash (1 kishi bilan test ham bo'ladi) |
 | `admin/force_stop` | o'yinni to'xtatib hammani lobbyga qaytarish |
+| `admin/test_kill` | o'zingizga 1 kill yozish — qurol almashishi va 5 killda g'alabani yolg'iz tekshirish |
 | `admin/give_guns` | 5 ta qurol + karambitni tekshirish uchun olish (hotbar 1–7 almashadi) |
 | `admin/set_lobby` | lobby (kirish joyi)ni turgan joyingizga ko'chirish |
 | `admin/set_pad` | o'yin boshlash doirasi markazini ko'chirish (radius 3.8 blok) |
@@ -109,4 +110,5 @@ Hamma buyruqlar `/function sniper_arena:` bilan boshlanadi, masalan `/function s
 2. `/function sniper_arena:admin/status` — spawnlar 20 ta, karambit "bor" bo'lishi kerak.
 3. `/function sniper_arena:admin/builder` → `/function sniper_arena:admin/give_guns` — 5 qurol otadimi, o'q cheksizmi.
 4. `/function sniper_arena:admin/builder` (o'chirish) → doiraga turing → `/function sniper_arena:admin/force_start` — yolg'iz test.
+   Arenada `/function sniper_arena:admin/test_kill` ni 5 marta yozing: har safar qurol almashadi, 5-da g'alaba.
 5. Do'st bilan: ikkalangiz doiraga turing → 10 soniya → arena → kill qilib qurol almashishini va 5 killda g'alabani tekshiring.
