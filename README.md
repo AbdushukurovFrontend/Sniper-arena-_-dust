@@ -42,6 +42,20 @@ Qo'shimcha himoyalar:
 - Sidebar: lobbida umumiy **g'alabalar reytingi**, o'yinda joriy **killar**. Tepada bossbar:
   lobbida holat (doirada nechta kishi / sanoq), o'yinda qolgan vaqt.
 
+## HUD mod (CS2 uslubidagi ekran)
+
+`hud_mod/` — kichik Forge 1.20.1 mod (`sniper_arena_hud`). Faqat Sniper Arena ichida ishlaydi
+(boshqa kartalarda oddiy ekran qoladi):
+
+- pastdagi yurak, ovqat, tajriba chizig'i va hotbar yashiriladi;
+- **o'ng pastda** qurollar ro'yxati (tanlangan qurol ajralib turadi, nomi bilan), chap pastda jon;
+- **tepada o'rtada** (o'yin paytida): vaqt, g'alaba sharti va hamma o'yinchilarning yuzi + killari;
+- **o'ng tepada** kill feed: `qotil [qurol] o'lgan` (o'z killaringiz qizil ramkada).
+
+Jar faylini GitHub avtomatik yig'adi: repo → **Actions** → "Build Sniper Arena HUD mod" → oxirgi ishga tushirish →
+**Artifacts** → `sniper_arena_hud`. Ichidagi `sniper_arena_hud-1.20.1-1.0.0.jar` ni barcha o'yinchilarning
+`mods` papkasiga (launcher modpack'iga) qo'ying.
+
 ## Kerakli modlar (launcher modpack'ida bo'lishi shart)
 
 | Mod | Nima uchun |
