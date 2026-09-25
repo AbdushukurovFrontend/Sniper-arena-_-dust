@@ -235,15 +235,16 @@ def ensure_ready(name, what):
 
 
 def single_kill(victim, killer, what):
+    t_kill = time.time()
     kill(victim, killer)
     last_death[victim] = time.time()
     expected[killer] += 1
     check_killer(killer, what)
     check_victim(victim, killer, what)
     bot = bots[victim]
-    cams = wait_until(lambda: bot.events_between(time.time() - 5, time.time() + 1, 'camera'), 3)
+    cams = wait_until(lambda: [e for e in bot.events_between(t_kill, time.time() + 1, 'camera') if e[2][0] != bot.eid], 3)
     if cams:
-        t, _, (cam_id, known) = cams[-1]
+        _, _, (cam_id, known) = cams[0]
         check(known == ARMOR_STAND_TYPE, '%s: %s client switched to the killcam entity it already knows' % (what, victim),
               'camera id %s, known type %s' % (cam_id, known))
     else:
@@ -252,7 +253,7 @@ def single_kill(victim, killer, what):
 
 def start_match(what):
     for name in bots:
-        rc.cmd('execute at @e[type=minecraft:marker,tag=sa.pad,limit=1] run tp %s ~ ~0.5 ~' % name)
+        rc.cmd('tp %s @e[type=minecraft:marker,tag=sa.pad,limit=1]' % name)
     ok = wait_until(lambda: score('#state', 'sa.var') == 2, 40, 0.5)
     check(ok, '%s: countdown on the pad started the match' % what)
     for name in bots:
@@ -413,10 +414,12 @@ def full_match():
     last_death['Guest'] = last_death['Host1'] = time.time()
     expected['Host1'] += 1
     expected['Guest'] += 1
-    check_killer('Host1', 'trade')
-    check_killer('Guest', 'trade')
+    # both are dead, so their weapons are checked after the respawn (ensure_ready)
     check_victim('Guest', 'Host1', 'trade')
     check_victim('Host1', 'Guest', 'trade')
+    for name in ('Host1', 'Guest'):
+        ok = wait_until(lambda: score(name, 'sa.kills') == expected[name], 3)
+        check(ok, 'trade: %s has %d kills' % (name, expected[name]), score(name, 'sa.kills'))
     ensure_ready('Host1', 'trade')
     ensure_ready('Guest', 'trade')
 
