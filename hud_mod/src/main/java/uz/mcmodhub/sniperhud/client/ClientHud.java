@@ -25,8 +25,10 @@ import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 /** Sniper Arena ekrani: vanilla pastki qismni yashiradi va CS2 uslubidagi elementlarni chizadi. */
 public final class ClientHud {
@@ -52,7 +54,26 @@ public final class ClientHud {
 
     public static void init(IEventBus modBus) {
         modBus.addListener(ClientHud::registerOverlays);
+        modBus.addListener(ClientHud::clientSetup);
         MinecraftForge.EVENT_BUS.addListener(ClientHud::onRenderOverlay);
+    }
+
+    /**
+     * TaCZ standartda (GunLodRenderDistance = 0) boshqa o'yinchilar qurolini doim soddalashtirilgan (LOD)
+     * modelda chizadi — mcs2 skinlari ko'rinmay qoladi. 128 blok ichida to'liq skinli model chizilsin.
+     */
+    private static void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(() -> {
+            try {
+                Class<?> renderConfig = Class.forName("com.tacz.guns.config.client.RenderConfig");
+                Object value = renderConfig.getField("GUN_LOD_RENDER_DISTANCE").get(null);
+                if (value instanceof ForgeConfigSpec.IntValue distance && distance.get() < 128) {
+                    distance.set(128);
+                }
+            } catch (ReflectiveOperationException | RuntimeException | LinkageError ignored) {
+                // TaCZ yo'q yoki boshqa versiya — hech narsa qilmaymiz
+            }
+        });
     }
 
     private static void registerOverlays(RegisterGuiOverlaysEvent event) {

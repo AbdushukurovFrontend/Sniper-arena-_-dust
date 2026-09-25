@@ -52,6 +52,9 @@ Qo'shimcha himoyalar:
 - **tepada o'rtada** (o'yin paytida): vaqt, g'alaba sharti va hamma o'yinchilarning yuzi + killari;
 - **o'ng tepada** kill feed: `qotil [qurol] o'lgan` (o'z killaringiz qizil ramkada).
 
+- boshqa o'yinchilar qurolidagi **skin ko'rinadi**: mod TaCZ'ning `GunLodRenderDistance` sozlamasini 128 ga qo'yadi
+  (standart 0 da boshqalar qurolini oddiy, skinsiz model bilan ko'rardingiz).
+
 Jar faylini GitHub avtomatik yig'adi: repo → **Actions** → "Build Sniper Arena HUD mod" → oxirgi ishga tushirish →
 **Artifacts** → `sniper_arena_hud`. Ichidagi `sniper_arena_hud-1.20.1-1.0.0.jar` ni barcha o'yinchilarning
 `mods` papkasiga (launcher modpack'iga) qo'ying.
