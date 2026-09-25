@@ -70,10 +70,21 @@ Har bir qurol alohida faylda: `datapacks/sniper_arena/data/sniper_arena/function
 Karambit: `guns/knife.mcfunction`. Qurol nomini bilish: qurolni qo'lga olib `/data get entity @s SelectedItem`.
 Tekshirish: `/function sniper_arena:admin/give_guns` (18 ta qurol inventarga tushadi).
 
-**Zarar (damage):** `datapacks/sniper_arena/data/tacz/data/guns/` ichida TaCZ qurollari (aug, scar_l, sks_tactical,
-kar98, m1014, db_long) uchun zarar qayta sozlangan: avtomat — tanaga 5 o'q / boshga 2 o'q, SKS — 3 / 2,
-drobovik — yaqindan 2 o'q, kar98 — tanaga 2 o'q, boshga 1 o'q. `mcs2:` qurollarining zarari `mcs2_gunpack` fayli
-kelgach xuddi shu tarzda sozlanadi.
+**Zarar (damage), 20 jonli o'yinchiga nisbatan:**
+
+| Qurol | Tanaga | Boshga |
+| --- | --- | --- |
+| M4A1-S, AK, M4A4, AUG, SCAR-L | 5 o'q | 2 o'q |
+| SKS | 3 o'q | 2 o'q |
+| Glock | 6 o'q | 3 o'q |
+| Drobovik (m1014, db_long) | yaqindan 2 o'q, uzoqdan ko'proq | bittada o'ldirmaydi |
+| AWP, kar98 (snayper) | 2 o'q | **1 o'q** |
+| Sovuq qurollar | 2–3 zarba | — |
+
+Qanday qilingan: `serverconfig/tacz-server.toml` da `DamageBaseMultiplier = 0.125` va `HeadShotBaseMultiplier = 0.65`
+(mcs2 qurollari CS2 raqamlari bilan keladi: AK 36, AWP 115, boshga ×4). TaCZ qurollari uchun
+`datapacks/sniper_arena/data/tacz/data/guns/` dagi fayllar shu ko'paytmaga moslab hisoblangan.
+Umuman tezroq/sekinroq o'lish kerak bo'lsa — faqat `DamageBaseMultiplier` ni o'zgartiring (masalan 0.15 = tezroq).
 
 ## Sozlamalar
 
