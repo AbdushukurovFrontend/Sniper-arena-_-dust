@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All rights reserved"
+
+[[mods]]
+modId="sniper_arena_hud"
+version="1.0.0"
+displayName="Sniper Arena HUD"
+authors="MCModHub"
+description='''CS2 uslubidagi ekran: o'ng pastda qurollar, tepada o'yinchilar paneli va o'ng tepada kill feed. Faqat Sniper Arena xaritasida ishlaydi.'''
+displayTest="IGNORE_ALL_VERSION"
+
+[[dependencies.sniper_arena_hud]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.sniper_arena_hud]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.20.2)"
+    ordering="NONE"
+    side="BOTH"
